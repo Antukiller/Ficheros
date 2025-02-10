@@ -27,8 +27,6 @@ fun main() {
             ).toModel()
         }
 
-
-
     estudinates.forEach { println(it) }
 
     // Alumno más mayor
@@ -47,11 +45,13 @@ fun main() {
     val grupoPorEdad = estudinates.groupBy { it.edad }
     // Agrupados por edad, numero de alumnos
     val estudianteEdadNumero = estudinates.groupingBy { it.edad }.eachCount()
+    println("Agrupados por edad y numero de alumnos: $estudianteEdadNumero")
     // Agrupados por edad, obtener la longitud de nombre.
+    val estudianteEdadNombre = estudinates.groupBy { it.edad }
+        .mapValues { entry -> entry.value.map { it.nombre.length } }
+    println("Agrupados por edad y obtner la longitud del nombre: $estudianteEdadNombre")
     // Agrupados por edad, obtener el nombre mas largo.
-
-
-
-
-
+    val estudianteEdadNombreLargo = estudinates.groupBy { it.edad }
+    .mapValues { entry -> entry.value.maxByOrNull { it.nombre.length }?.nombre }
+    println("Agrupados por edad y obtener el nombre más largo: $estudianteEdadNombreLargo")
 }
